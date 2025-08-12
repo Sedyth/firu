@@ -59,7 +59,7 @@ socket.onmessage = function(event) {
         // Si no hay data.action, simplemente no se hace nada. Fin del problema.
 
     } catch (error) {
-        console.error("Error al procesar el mensaje:", error);
+        console.log("Error al procesar el mensaje:", error);
     }
 };
 
@@ -132,3 +132,4 @@ socket.onmessage = function(event) {
     }
 
 });
+
