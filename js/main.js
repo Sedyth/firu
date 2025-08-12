@@ -34,6 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- MANEJADOR DE MENSAJES (Ahora muy simple) ---
 socket.onmessage = function(event) {
     // No necesitamos los logs de diagnóstico ahora, los quitamos para limpiar.
+    // --- INICIO DE DIAGNÓSTICO ---
+    console.log("Datos brutos recibidos del servidor:", event.data);
+    console.log("El tipo de datos recibidos es:", typeof event.data);
+    // --- FIN DE DIAGNÓSTICO --
 
     try {
         const data = JSON.parse(event.data);
@@ -126,4 +130,5 @@ socket.onmessage = function(event) {
             isAnimating = false;
         }, 7000);
     }
+
 });
