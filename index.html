@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perrito de Stream (Versión Sencilla)</title>
+<style>
+    body { margin: 0; padding: 0; overflow: hidden; }
+
+    /* Contenedor principal del perrito */
+    #perrito-container {
+        position: absolute;
+        left: 50px;
+        bottom: 50px;
+        height: 150px; /* Ancho de la imagen del perrito */
+        transition: left 5s linear, top 5s linear; /* Mantiene el movimiento suave */
+    }
+
+    /* Imagen del perrito dentro del contenedor */
+    #perrito {
+        height: 100%;
+        display: block;
+    }
+
+    /* Estilo del cuadro de diálogo */
+    #dialogo {
+        position: absolute;
+        bottom: 110px; /* Posición arriba del perrito (ajusta si es necesario) */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: white;
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        width: max-content; /* El ancho se ajusta al texto */
+        max-width: 200px;
+        text-align: center;
+        opacity: 0; /* Inicialmente invisible */
+        transition: opacity 0.5s; /* Animación de aparición/desaparición */
+        z-index: 10;
+    }
+
+    /* Triángulo para simular un bocadillo de cómic */
+    #dialogo::after {
+        content: '';
+        position: absolute;
+        bottom: -12px; /* Apunta hacia abajo */
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 10px 10px 0;
+        border-style: solid;
+        border-color: black transparent transparent transparent;
+    }
+
+    #dialogo-texto {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+    <div id="perrito-container">
+        <div id="dialogo">
+            <p id="dialogo-texto"></p>
+        </div>
+        <img id="perrito" src="images/sit.gif" alt="Perrito del Stream">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tmi.js/dist/tmi.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
