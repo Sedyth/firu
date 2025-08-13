@@ -65,7 +65,7 @@ socket.onmessage = function(event) {
 
     // Inicia el comportamiento aleatorio del perrito.
 // Se ejecutará una acción cada 20 a 60 segundos (20000 a 60000 milisegundos).
-iniciarComportamientoAleatorio(20000, 60000);
+iniciarComportamientoAleatorio(5000, 10000);
 
     // --- FUNCIÓN GENÉRICA PARA ANIMACIONES ---
     function ejecutarAnimacion(nombreGif, duracion) {
@@ -161,6 +161,7 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
+
 
 
 
