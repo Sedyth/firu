@@ -1,5 +1,5 @@
 // Esperamos a que todo el HTML se cargue
-console.log("¡Hola desde main.js! El guion del perrito se ha cargado correctamente.");
+console.log("Running V2.0.1");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -167,6 +167,7 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
+
 
 
 
