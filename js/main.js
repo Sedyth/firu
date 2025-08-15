@@ -15,6 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     socket.onopen = () => console.log("Conexión con Streamer.bot establecida.");
     socket.onerror = (error) => console.error("Error de WebSocket: Asegúrate de que Streamer.bot esté corriendo y el servidor WebSocket activo.", error);
+
+    socket.addEventListener('open', (event) => {
+
+        socket.send('Hello Server!');
+        
+    });
     
     // --- MAPA DE ACCIONES (El nuevo "if/else if") ---
     const actionHandlers = {
@@ -161,6 +167,7 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
+
 
 
 
