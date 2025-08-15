@@ -157,10 +157,11 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
     }
 
     // Inicia el ciclo.
-    ejecutarAccionAleatoria();
+    //ejecutarAccionAleatoria();
 }
 
 });
+
 
 
 
