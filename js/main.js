@@ -1,5 +1,5 @@
 // Esperamos a que todo el HTML se cargue
-console.log("Running V2.0.1");
+console.log("Running V2.0.2");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,12 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     socket.onopen = () => console.log("Conexión con Streamer.bot establecida.");
     socket.onerror = (error) => console.error("Error de WebSocket: Asegúrate de que Streamer.bot esté corriendo y el servidor WebSocket activo.", error);
-
-    socket.addEventListener('open', (event) => {
-
-        socket.send('Hello Server!');
-        
-    });
     
     // --- MAPA DE ACCIONES (El nuevo "if/else if") ---
     const actionHandlers = {
@@ -36,6 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
         'doCelebrate': (data) => doCelebrate(data.username),
         'doWalk': hacerPaseo // Esta es más compleja, la dejamos separada
     };
+
+
+    socket.addEventListener('message', (event) =>{
+        console.log ('Message from server ', event.data)
+    });
 
     // --- MANEJADOR DE MENSAJES (Ahora muy simple) ---
 socket.onmessage = function(event) {
@@ -167,6 +166,7 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
+
 
 
 
