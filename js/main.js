@@ -1,5 +1,5 @@
 // Esperamos a que todo el HTML se cargue
-console.log("Running V2.0.7");
+console.log("Running V2.0.8");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -133,36 +133,53 @@ iniciarComportamientoAleatorio(60000, 120000);
         ejecutarAnimacion('celebrate', 8000);
     }
 
-    function hacerPaseo() {
-        if (isAnimating) return;
-        isAnimating = true;
+function hacerPaseo() {
+    if (isAnimating) return;
+    isAnimating = true;
+    console.log("Iniciando paseo en dos fases...");
 
-        const posicionActual = parseInt(perritoContainer.style.left || 0);
-        const mitadDePantalla = window.innerWidth / 2;
-        let nuevaPosicion;
-        let direccionScale;
+    const anchoPerrito = perritoContainer.offsetWidth;
+    const posicionActual = perritoContainer.offsetLeft;
+    const mitadDePantalla = window.innerWidth / 2;
+    
+    let nuevaPosicion;
+    let direccionScale;
 
-        if (posicionActual < mitadDePantalla) {
-            // Ir a la derecha
-            nuevaPosicion = window.innerWidth - 150;
-            direccionScale = 'scaleX(1)';
-        } else {
-            // Ir a la izquierda
-            nuevaPosicion = 50;
-            direccionScale = 'scaleX(-1)';
-        }
-        
-        perritoImg.style.transform = direccionScale;
-        perritoImg.src = 'images/walk.gif';
-
-        setTimeout(() => { perritoContainer.style.left = nuevaPosicion + 'px'; }, 2200);
-
-        setTimeout(() => {
-            perritoImg.src = 'images/sit.gif';
-            perritoImg.style.transform = 'scaleX(1)';
-            isAnimating = false;
-        }, 7100);
+    // Se decide la dirección del paseo (esta lógica no cambia)
+    if (posicionActual < mitadDePantalla) {
+        // Ir a la derecha
+        nuevaPosicion = window.innerWidth - anchoPerrito - 50; 
+        direccionScale = 'scaleX(1)';
+    } else {
+        // Ir a la izquierda
+        nuevaPosicion = 50;
+        direccionScale = 'scaleX(-1)';
     }
+    
+    // --- FASE 1: Preparación (Duración: 2200ms) ---
+    // Se activa el GIF de caminar y se ajusta la dirección, pero el perrito aún no se mueve.
+    console.log("Fase 1: Preparando para caminar.");
+    perritoImg.style.transform = direccionScale;
+    perritoImg.src = 'images/walk.gif';
+
+    // --- FASE 2: Caminata (Duración: 5000ms) ---
+    // Usamos setTimeout para esperar 2200ms antes de iniciar el movimiento.
+    setTimeout(() => {
+        console.log("Fase 2: ¡Comienza el movimiento!");
+        // Este cambio en 'left' activa la transición de 5 segundos de tu CSS.
+        perritoContainer.style.left = nuevaPosicion + 'px';
+    }, 2200);
+
+    // --- FINAL DE LA ACCIÓN ---
+    // La duración total de la animación es 2200ms + 5000ms = 7200ms.
+    // Después de ese tiempo total, el perrito vuelve a sentarse.
+    setTimeout(() => {
+        console.log("El paseo ha terminado.");
+        perritoImg.src = 'images/sit.gif';
+        perritoImg.style.transform = 'scaleX(1)'; // Reseteamos la dirección
+        isAnimating = false;
+    }, 7200); 
+}
 
     // --- FUNCIÓN DE COMPORTAMIENTO ALEATORIO ---
 function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
@@ -190,6 +207,7 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
+
 
 
 
