@@ -85,7 +85,7 @@ socket.onmessage = function(event) {
 
     // Inicia el comportamiento aleatorio del perrito.
 // Se ejecutará una acción cada 20 a 60 segundos (20000 a 60000 milisegundos).
-iniciarComportamientoAleatorio(20000, 60000);
+iniciarComportamientoAleatorio(60000, 120000);
 
     const subscriptionRequest = {
       request: "Subscribe",
@@ -155,7 +155,7 @@ iniciarComportamientoAleatorio(20000, 60000);
         perritoImg.style.transform = direccionScale;
         perritoImg.src = 'images/walk.gif';
 
-        setTimeout(() => { perritoContainer.style.left = nuevaPosicion + 'px'; }, 1000);
+        setTimeout(() => { perritoContainer.style.left = nuevaPosicion + 'px'; }, 2100);
 
         setTimeout(() => {
             perritoImg.src = 'images/sit.gif';
@@ -186,10 +186,11 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
     }
 
     // Inicia el ciclo.
-    //ejecutarAccionAleatoria();
+    ejecutarAccionAleatoria();
 }
 
 });
+
 
 
 
