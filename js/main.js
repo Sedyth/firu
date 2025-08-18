@@ -1,5 +1,5 @@
 // Esperamos a que todo el HTML se cargue
-console.log("Running V2.0.5");
+console.log("Running V2.0.6");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -155,7 +155,7 @@ iniciarComportamientoAleatorio(60000, 120000);
         perritoImg.style.transform = direccionScale;
         perritoImg.src = 'images/walk.gif';
 
-        setTimeout(() => { perritoContainer.style.left = nuevaPosicion + 'px'; }, 2100);
+        setTimeout(() => { perritoContainer.style.left = nuevaPosicion + 'px'; }, 2200);
 
         setTimeout(() => {
             perritoImg.src = 'images/sit.gif';
@@ -190,6 +190,7 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
+
 
 
 
