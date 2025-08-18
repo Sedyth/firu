@@ -1,5 +1,5 @@
 // Esperamos a que todo el HTML se cargue
-console.log("Running V2.0.3");
+console.log("Running V2.0.4");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -167,4 +167,5 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
+
 
