@@ -1,5 +1,5 @@
 // Esperamos a que todo el HTML se cargue
-console.log("Running V2.0.4");
+console.log("Running V2.0.5");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +13,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- CONEXIÓN AL SERVIDOR WEBSOCKET ---
     const socket = new WebSocket('ws://localhost:8080/');
 
-    socket.onopen = () => console.log("Conexión con Streamer.bot establecida.");
+    socket.onopen = (event) => {
+      console.log('✅ WebSocket connection established.');
+    
+      try {
+        // Convert the JavaScript subscription object to a JSON string
+        const messageString = JSON.stringify(subscriptionRequest);
+    
+        // Send the subscription request to the server
+        socket.send(messageString);
+        console.log('-> Subscription request sent:', messageString);
+      } catch (error) {
+        console.error('❌ Failed to send subscription request:', error);
+      }
+    };
+
     socket.onerror = (error) => console.error("Error de WebSocket: Asegúrate de que Streamer.bot esté corriendo y el servidor WebSocket activo.", error);
     
     // --- MAPA DE ACCIONES (El nuevo "if/else if") ---
@@ -72,6 +86,15 @@ socket.onmessage = function(event) {
     // Inicia el comportamiento aleatorio del perrito.
 // Se ejecutará una acción cada 20 a 60 segundos (20000 a 60000 milisegundos).
 iniciarComportamientoAleatorio(20000, 60000);
+
+    const subscriptionRequest = {
+      request: "Subscribe",
+      id: "my-custom-event-subscription",
+      events: {
+        General: ["Custom"]
+      }
+    };
+
 
     // --- FUNCIÓN GENÉRICA PARA ANIMACIONES ---
     function ejecutarAnimacion(nombreGif, duracion) {
@@ -167,5 +190,6 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
+
 
 
