@@ -168,7 +168,7 @@ function hacerPaseo() {
         console.log("Fase 2: ¡Comienza el movimiento!");
         // Este cambio en 'left' activa la transición de 5 segundos de tu CSS.
         perritoContainer.style.left = nuevaPosicion + 'px';
-    }, 2200);
+    }, 2300);
 
     // --- FINAL DE LA ACCIÓN ---
     // La duración total de la animación es 2200ms + 5000ms = 7200ms.
@@ -178,7 +178,7 @@ function hacerPaseo() {
         perritoImg.src = 'images/sit.gif';
         perritoImg.style.transform = 'scaleX(1)'; // Reseteamos la dirección
         isAnimating = false;
-    }, 7200); 
+    }, 7300); 
 }
 
     // --- FUNCIÓN DE COMPORTAMIENTO ALEATORIO ---
@@ -207,6 +207,7 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
+
 
 
 
