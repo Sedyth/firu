@@ -32,34 +32,40 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- MANEJADOR DE MENSAJES (Ahora muy simple) ---
+// --- MANEJADOR DE MENSAJES (CORREGIDO Y MEJORADO) ---
 socket.onmessage = function(event) {
-    // No necesitamos los logs de diagnóstico ahora, los quitamos para limpiar.
-    // --- INICIO DE DIAGNÓSTICO ---
     console.log("Datos brutos recibidos del servidor:", event.data);
-    console.log("El tipo de datos recibidos es:", typeof event.data);
-    // --- FIN DE DIAGNÓSTICO --
 
     try {
-        const data = JSON.parse(event.data);
+        // 1. Parseamos el JSON que llega.
+        const messageData = JSON.parse(event.data);
 
-        // --- ESTA ES LA LÍNEA CLAVE DE LA SOLUCIÓN ---
-        // Si el objeto 'data' tiene una propiedad 'action', procesamos el mensaje.
-        // Si no la tiene (como el mensaje de saludo), lo ignoramos y no hacemos nada.
-        if (data && data.action) {
-            const accion = data.action;
+        // 2. Comprobamos si el mensaje tiene la estructura esperada de Streamer.bot.
+        //    Buscamos la acción dentro del objeto 'data' anidado.
+        if (messageData && messageData.data && messageData.data.action) {
+            
+            // Extraemos la acción y el payload de datos para más claridad.
+            const accion = messageData.data.action;
+            const payload = messageData.data; // Contiene la acción y cualquier otro dato como 'username'.
+
             console.log("Recibida acción válida:", accion);
 
+            // Buscamos el manejador correspondiente a la acción.
             const handler = actionHandlers[accion];
+            
             if (handler) {
-                handler(data);
+                // Ejecutamos el manejador y le pasamos todo el payload.
+                // Así, funciones como doHello(data) recibirán { action: 'doHello', username: '...' }
+                handler(payload);
             } else {
-                console.log(`Acción conocida pero sin manejador: ${accion}`);
+                console.log(`Acción desconocida, no se encontró manejador para: ${accion}`);
             }
         }
-        // Si no hay data.action, simplemente no se hace nada. Fin del problema.
+        // Si el mensaje no tiene la estructura esperada, simplemente se ignora.
 
     } catch (error) {
-        console.log("Error al procesar el mensaje:", error);
+        console.error("Error al procesar el mensaje. ¿Quizás no era un JSON válido?", error);
+        console.log("El mensaje que causó el error fue:", event.data); // Muy útil para depurar
     }
 };
 
@@ -161,3 +167,4 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
+
