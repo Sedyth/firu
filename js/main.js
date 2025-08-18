@@ -1,5 +1,5 @@
 // Esperamos a que todo el HTML se cargue
-console.log("Running V2.0.6");
+console.log("Running V2.0.7");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -161,7 +161,7 @@ iniciarComportamientoAleatorio(60000, 120000);
             perritoImg.src = 'images/sit.gif';
             perritoImg.style.transform = 'scaleX(1)';
             isAnimating = false;
-        }, 7000);
+        }, 7100);
     }
 
     // --- FUNCIÓN DE COMPORTAMIENTO ALEATORIO ---
@@ -190,6 +190,7 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
+
 
 
 
