@@ -161,13 +161,3 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
-
-
-
-
-
-
-
-
-
-
