@@ -1,5 +1,5 @@
 // Esperamos a que todo el HTML se cargue
-console.log("Running V2.0.2");
+console.log("Running V2.0.3");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,11 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'doCelebrate': (data) => doCelebrate(data.username),
         'doWalk': hacerPaseo // Esta es más compleja, la dejamos separada
     };
-
-
-    socket.addEventListener('message', (event) =>{
-        console.log ('Message from server ', event.data)
-    });
 
     // --- MANEJADOR DE MENSAJES (Ahora muy simple) ---
 socket.onmessage = function(event) {
@@ -166,6 +161,7 @@ function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
 }
 
 });
+
 
 
 
