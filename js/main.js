@@ -1,5 +1,5 @@
 // Esperamos a que todo el HTML se cargue
-console.log("Running V2.0.12");
+console.log("Running V2.0.13");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -188,7 +188,7 @@ function doRandom() {
 
 
         // 1. Selecciona una acción al azar de la lista.
-        const randomAction = randomActions[Math.floor(Math.random() * accionesAleatorias.length)];
+        const randomAction = randomActions[Math.floor(Math.random() * randomActions.length)];
         console.log(`Comportamiento aleatorio: Ejecutando '${randomAction}'`);
 
         // 2. Llama a la función manejadora para esa acción.
@@ -197,14 +197,4 @@ function doRandom() {
 }
 
 });
-
-
-
-
-
-
-
-
-
-
 
