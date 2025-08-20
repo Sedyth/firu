@@ -1,5 +1,5 @@
 // Esperamos a que todo el HTML se cargue
-console.log("Running V2.0.10");
+console.log("Running V2.0.11");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,8 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
         'doKiss': () => ejecutarAnimacion('kiss', 8000),
         'doHello': (data) => doHello(data.username),
         'doCelebrate': (data) => doCelebrate(data.username),
+        'doRandom': () => doRandom(),
         'doWalk': hacerPaseo // Esta es más compleja, la dejamos separada
     };
+
+    // Obtenemos una lista de todas las acciones posibles, excluyendo las que no queremos que sean aleatorias.
+    const randomActions = Object.keys(actionHandlers).filter(accion =>
+        !['doHello', 'doCelebrate'].includes(accion)
+    );
 
     // --- MANEJADOR DE MENSAJES (Ahora muy simple) ---
 // --- MANEJADOR DE MENSAJES (CORREGIDO Y MEJORADO) ---
@@ -182,31 +188,20 @@ function hacerPaseo() {
 }
 
     // --- FUNCIÓN DE COMPORTAMIENTO ALEATORIO ---
-function iniciarComportamientoAleatorio(intervaloMin, intervaloMax) {
-    // Obtenemos una lista de todas las acciones posibles, excluyendo las que no queremos que sean aleatorias.
-    const accionesAleatorias = Object.keys(actionHandlers).filter(accion =>
-        !['doHello', 'doCelebrate'].includes(accion)
-    );
+function doRandom() {
 
-    function ejecutarAccionAleatoria() {
+
         // 1. Selecciona una acción al azar de la lista.
-        const accionAleatoria = accionesAleatorias[Math.floor(Math.random() * accionesAleatorias.length)];
-        console.log(`Comportamiento aleatorio: Ejecutando '${accionAleatoria}'`);
+        const randomAction = randomActions[Math.floor(Math.random() * accionesAleatorias.length)];
+        console.log(`Comportamiento aleatorio: Ejecutando '${randomAction}'`);
 
         // 2. Llama a la función manejadora para esa acción.
         // Pasamos un objeto vacío por si la función espera algún dato (como 'doWalk').
         actionHandlers[accionAleatoria]({});
-
-        // 3. Programa la siguiente ejecución en un tiempo aleatorio.
-        const proximoIntervalo = Math.random() * (intervaloMax - intervaloMin) + intervaloMin;
-        setTimeout(ejecutarAccionAleatoria, proximoIntervalo);
-    }
-
-    // Inicia el ciclo.
-    ejecutarAccionAleatoria();
 }
 
 });
+
 
 
 
