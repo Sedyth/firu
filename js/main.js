@@ -1,5 +1,5 @@
 // Esperamos a que todo el HTML se cargue
-console.log("Running V2.0.11");
+console.log("Running V2.0.12");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -88,10 +88,6 @@ socket.onmessage = function(event) {
         console.log("El mensaje que causó el error fue:", event.data); // Muy útil para depurar
     }
 };
-
-    // Inicia el comportamiento aleatorio del perrito.
-// Se ejecutará una acción cada 20 a 60 segundos (20000 a 60000 milisegundos).
-iniciarComportamientoAleatorio(120000, 240000);
 
     const subscriptionRequest = {
       request: "Subscribe",
@@ -201,6 +197,7 @@ function doRandom() {
 }
 
 });
+
 
 
 
