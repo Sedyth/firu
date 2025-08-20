@@ -1,5 +1,5 @@
 // Esperamos a que todo el HTML se cargue
-console.log("Running V2.0.13");
+console.log("Running V2.0.14");
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -193,8 +193,9 @@ function doRandom() {
 
         // 2. Llama a la función manejadora para esa acción.
         // Pasamos un objeto vacío por si la función espera algún dato (como 'doWalk').
-        actionHandlers[accionAleatoria]({});
+        actionHandlers[randomAction]({});
 }
 
 });
+
 
